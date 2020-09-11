@@ -193,9 +193,9 @@ c.	Logging: Manage the Control plane using kubectl.
 
 •	In order see environment variable which will be running container will started, we create the service first.
 
-1.	run `kubectl apply -f ./nginx-svc.yaml`
+1.	run `kubectl apply -f ./nginx-service.yaml`
 
-2.	run `kubectl apply -f ./deployment.yaml`
+2.	run `kubectl apply -f ./nginx-deployment.yaml`
 
 3.	run `kubectl get service` should see the AWS LoadBalancer will be create and should see DNS of LoadBalancer.
 

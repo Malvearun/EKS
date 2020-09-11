@@ -47,16 +47,23 @@ EKS is a certified kubernetes conformant environment, you can compute EC2 for st
 #### EKS is integrated with below:
 
 •	**CloudTrail**: logging of all users and API activity.
+
 •	**CloudWatch**: Control panel logs and Monitoring.
-•	**IAM**: Authentication, authorization, permissions.,
+
+•	**IAM**: Authentication, authorization, permissions.
+
 •	**VPN**: Network isolation, security groups, ACLs.
+
 •	**Auto Scaling**: Scale the infrastructure as required.
+
 •	**ELB**:  to expose your application over internet.
 
 #### EKS control plane:
 
 •	Scalability:  It is supper scalable, it is run across three AZ’s. There is no single point failure.
+
 •	Security: Automatically the latest patches are updated on go.
+
 •	Single Tenant: It is not shared with any other EKS cluster.
 
 It is quick and easy to get up and running with multi-node, multi-AZ, high available Kubernetes cluster in a single command. It operates and maintains the k8s control plane.
@@ -79,9 +86,13 @@ Example commands:
 ### Steps will be following for EKS build:
 
 •	IAM user with admin permissions 
+
 •	EC2 Instance configuration with command line tools 
+
 •	Provision of EKS Cluster
+
 •	Create Deployment on your EKS Cluster
+
 •	Test the HA of EKS cluster.
 
 ##### Create an IAM User with Admin Permissions
@@ -92,7 +103,8 @@ AWS Console &rarr; Services &rarr; IAM &rarr; Users &rarr; Add User &rarr; EKS_u
 ##### Launch an EC2 Instance and Configure.
 
 •	Select the correct region. 
-•	AWS Console &rarr; Services &rarr; EC2  Launch Instance > 
+
+•	AWS Console &rarr; Services &rarr; EC2 &rarr; Launch Instance > 
 1.	Choose AMI ‘Linux’
 2.	Choose the Instance type as `depending upon requirement` 
 3.	Configuration Instance Details:
@@ -150,37 +162,66 @@ Reference page: https://docs.aws.amazon.com/eks/latest/userguide/getting-started
 run `eksctl create cluster --name dev-cluster --version 1.17 --region us-east-1 --nodegroup-name standard-workers --node-type t3.micro --nodes 3 --nodes-min 1 --nodes-max 4 –managed`
 
 •	check the above command and can modify depending upon the requirement.
-1.	Should monitor the CloudFormation  Stacks  to see all the Event timestamp getting ready and look for status. At times you will see an error coming up. So don’t worry nothing wrong has done from your side. It is the infrastructure capacity. It will revert back and rollback and can create new with same command again.
+1.	Should monitor the CloudFormation &rarr; Stacks &rarr; to see all the Event timestamp getting ready and look for status. At times you will see an error coming up. So don’t worry nothing wrong has done from your side. It is the infrastructure capacity. It will revert back and rollback and can create new with same command again.
+
 Note: Duration of cluster creation might take more than 10 minutes.
-2.	Services  Containers  EKS  Cluster will be created.
+
+2.	Services &rarr; Containers &rarr; EKS &rarr; Cluster will be created.
+
 a.	Compute: find all the nodes created, select the group name kubernetes version 1.17, Instance type: T3.micro, status shows as active.
 b.	Networking: Should see the VPC, Subnets, Security groups, networking is created.
 c.	Logging: Manage the Control plane using kubectl.
+
 •	Move to EC2 instance, should see four instance running dev-cluster instance names.
+
 •	Connect back to admin instance and follow below commands.
+
 1.	run `eksctl get cluster` get the information about the cluster.
+
 2.	run `aws eks update-kubeconfig –name dev-cluster –region us-east-1`
+
 ##### Install our application:
+
 1.	run `sudo yum install -y git` to install git
+
 2.	run `git clone http://
+
 3.	cd “folder”
+
 4.	run `ls` to view the files.
+
+
 •	In order see environment variable which will be running container will started, we create the service first.
+
 1.	run `kubectl apply -f ./nginx-svc.yaml`
-2.	run `kubectl apply -f ./deployment.yaml
+
+2.	run `kubectl apply -f ./deployment.yaml`
+
 3.	run `kubectl get service` should see the AWS LoadBalancer will be create and should see DNS of LoadBalancer.
+
 4.	To access the application through loadbalncer DNS, copy and paste in browser.
+
 5.	run `curl "aa4a691577643433bbe713ff71d5797a-85005419.us-east-1.elb.amazonaws.com"`
 
 #### Exploring High Availability of EKS cluster:
+
 •	Move to EC2 instance, should see three or four instance running dev-cluster instance names. Select and `stop` them all.
+
 •	Connect back to admin instance and follow below commands, to see the change in environment.
+
 •	`kubectl get nodes` Firstly, should see the `nodes` are `NotReady` status has the instance were stopped.
+
 •	`kubectl get pods` should be in `termination` status
+
 •	Wait for 2-3 minutes and run back the commands `kubectl get nodes` and `kubectl get pods` should see they are up and running.
+
 To check the environment is back:
+
 1.	run `kubectl get service` grab the name of the loadbalance domain name and paste in browser to check if it works.
+
 2.	Also, can check through run `curl "aa4a691577643433bbe713ff71d5797a-85005419.us-east-1.elb.amazonaws.com"`
+
+
 This concludes that the EKS cluster infrastructure is High Available.
 
 **Please excuse me for any typo errors.**

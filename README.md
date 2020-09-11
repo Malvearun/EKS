@@ -27,7 +27,7 @@ Fargate can be run with ECS and EKS.
 
 #### Terminologies:
 
-•	** Deployment **: Create instance of the container, will monitor and restart the instance.
+•	**Deployment**: Create instance of the container, will monitor and restart the instance.
 •	**Image**: Docker image or Windows image.
 
 •	**Image repositories**: ECR, Docker Hub etc.,

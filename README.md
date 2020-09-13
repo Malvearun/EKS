@@ -159,7 +159,7 @@ Reference page: https://docs.aws.amazon.com/eks/latest/userguide/getting-started
 4.	run `eksctl help`
 
 ##### Create your Amazon EKS cluster and compute
-run `eksctl create cluster --name dev-cluster --version 1.17 --region us-east-1 --nodegroup-name standard-workers --node-type t3.micro --nodes 3 --nodes-min 1 --nodes-max 4 –managed`
+run `eksctl create cluster --name dev-cluster --version 1.17 --region eu-east-1 --nodegroup-name standard-workers --node-type t3.micro --nodes 5 --nodes-min 1 --nodes-max 6 –managed`
 
 •	check the above command and can modify depending upon the requirement.
 1.	Should monitor the CloudFormation &rarr; Stacks &rarr; to see all the Event timestamp getting ready and look for status. At times you will see an error coming up. So don’t worry nothing wrong has done from your side. It is the infrastructure capacity. It will revert back and rollback and can create new with same command again.

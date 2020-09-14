@@ -147,7 +147,7 @@ Reference page: https://docs.aws.amazon.com/eks/latest/userguide/getting-started
 1.	run `curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.9/2020-08-04/bin/linux/amd64/kubectl`
 2.	run `chmod +x ./kubectl` add execute permission to binary.
 3.	run ` mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin` 
-4.	run ` kubectl version --short –client` verify its version
+4.	run ` kubectl version --short --client` verify its version
 
 ##### Download and install ekstcl:
 
@@ -159,7 +159,7 @@ Reference page: https://docs.aws.amazon.com/eks/latest/userguide/getting-started
 4.	run `eksctl help`
 
 ##### Create your Amazon EKS cluster and compute
-run `eksctl create cluster --name dev-cluster --version 1.17 --region eu-east-1 --nodegroup-name standard-workers --node-type t3.micro --nodes 5 --nodes-min 1 --nodes-max 6 –managed`
+run `eksctl create cluster --name dev-cluster --version 1.17 --region eu-cental-1 --nodegroup-name standard-workers --node-type t3.micro --nodes 5 --nodes-min 1 --nodes-max 6 --managed`
 
 •	check the above command and can modify depending upon the requirement.
 1.	Should monitor the CloudFormation &rarr; Stacks &rarr; to see all the Event timestamp getting ready and look for status. At times you will see an error coming up. So don’t worry nothing wrong has done from your side. It is the infrastructure capacity. It will revert back and rollback and can create new with same command again.
@@ -184,7 +184,7 @@ c.	Logging: Manage the Control plane using kubectl.
 
 1.	run `sudo yum install -y git` to install git
 
-2.	run `git clone http://
+2.	run `https://github.com/Malvearun/EKS.git`
 
 3.	cd “folder”
 

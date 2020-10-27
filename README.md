@@ -1,4 +1,4 @@
-# EKS
+# EKS - Cluster
 
 Amazon EKS:
 
